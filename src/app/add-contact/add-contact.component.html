@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="card-rounded-0 bg-dark text-white border-0">
+            <div class="card-header">
+                <h3 class="text-center">Add Contact</h3>
+            </div>
+            <div class="card-body border-left-0">
+                <form  class="form" #contactForm="ngForm" (ngSubmit)="onSubmit()">
+                    
+                    <div class="form-group">
+                        <label for="firstName" class="form-check-label">First Name</label>
+                        <input type="text" name="firstName" #first=ngModel id="fname" class="form-control"   placeholder="First Name" required 
+                        [(ngModel)]="registeredContact.firstName" pattern="^[a-zA-Z]*$" [class.is-invalid]="first.invalid && first.touched" >
+                        <div *ngIf="first.errors && (first.touched)">
+                        <small class="text-danger" *ngIf="first.errors?.pattern">*Name can contain only alphabets</small>
+                        <small class="text-danger"  *ngIf="first.errors?.required">*First name cannot be left empty</small>
+                    </div>
+                    
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" class="form-check-label">Last Name</label>
+                        <input type="text" name="lastName" #last="ngModel" id="lName" class="form-control" required placeholder="Last Name"
+                        [(ngModel)]="registeredContact.lastName" pattern="^[a-zA-Z]*$"[class.is-invalid]="last.invalid && last.touched">
+                        <div *ngIf="last.errors && (last.touched)">
+                            <small class="text-danger"  *ngIf="last.errors.required">*Last name cannot be left empty</small>
+                            <small class="text-danger" *ngIf="last.errors.pattern">*Name can contain only alphabets</small>
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-check-label">Email</label>
+                        <input type="email" name="emailId" #email="ngModel" id="em" class="form-control" required placeholder="email eg. abc@xyz.com"
+                        [(ngModel)]="registeredContact.email"pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [class.is-invalid]="email.invalid && email.touched">
+                        <div *ngIf="email.errors && (email.touched)">
+                            <small class="text-danger" *ngIf="email.errors.pattern">*Please enter a valid email</small>
+                            <small class="text-danger"  *ngIf="email.errors.required">*Email cannot be left empty</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-check-label">Mobile no.</label>
+                        <input type="tel" name="phone" #phone="ngModel" id="ph" class="form-control" required placeholder="10 digit Mobile number"
+                        [(ngModel)]="registeredContact.phone" pattern="^\d{10}$"[class.is-invalid]="phone.invalid && phone.touched">
+                        <div *ngIf="phone.errors && (phone.touched)">
+                            <small class="text-danger" *ngIf="phone.errors.pattern">*Please enter a valid Mobile number</small>
+                            <small class="text-danger"  *ngIf="phone.errors.required">*Mobile number cannot be left empty</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status" class="form-check-inline">Status</label>
+                        <input type="checkbox" name="status" id="stat" class="form-check-inline" disabled value="true" required [(ngModel)]="registeredContact.status" #status="ngModel" >
+                      
+                    </div>
+
+                    <div class="form-group">
+                       <button type="submit"  class="btn btn-success btn-block w-25" [class.disabled]="contactForm.invalid" >Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
