@@ -1,0 +1,13 @@
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.video-item {
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+}
+.thumb {
+  width: 100%;
+  height: auto;
+}
